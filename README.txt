@@ -30,9 +30,9 @@ As of 5/10/2022 this will only be a simple rock
 paper scissors game with no score count to be
 implemented yet.
 
-							* * * * * * * * *
-							*  HOW TO PLAY  *
-							* * * * * * * * *
+		* * * * * * * * *
+		*  HOW TO PLAY  *
+		* * * * * * * * *
 
 Type PLAY in the terminal and what you want to choose;
 	example: "PLAY rock" or "PLAY scissors"
