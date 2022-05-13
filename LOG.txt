@@ -1,0 +1,40 @@
+~~~~5/10/2022
+
+Just made the readme file and set up the source and
+header files. They are as bare bones as possible for
+now.
+
+-Added libraries "vector", "string"
+
+-Added library "stdlib.h" for rand() that will be
+used for the programs choice against the player.
+
+~~~~5/11/2022
+
+-Added enum, Choice
+-Added MyParser class implemented from my student record manager project for CS 235
+-Added GameManager class with similar implementation from the student record manager program
+-Int main() was changed 
+
+Everything that was added was also implemented in the Source.cpp file
+
+~~~~5/12/2022
+
+-Changed enum Choice to enum class Choice
+-Added implementations for Get and Setters of PlayerChoice
+
+~~~~5/13/2022
+
+-Replaced cstdlib (stdlib.h) library with <random> for random integer generation
+-Changed parameters for GameManger::winner() method
+-Changed GameManger::winner() method to be static
+-Edited implementation for ComputerChoice() method
+-Edited the README file
+-Added ComputerChoice() function that returns the choice of the computer to be compared
+-Added implementation for GameManager::winner(Player& Human) method
+
+As of now, the game is now functional with two commands: PLAY, and STOP
+
+The main bugs as of now are:
+	-Program crashes when no input is entered into the terminal
+	-Program exits when a bad command is entered
