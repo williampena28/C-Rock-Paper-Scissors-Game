@@ -38,3 +38,17 @@ As of now, the game is now functional with two commands: PLAY, and STOP
 The main bugs as of now are:
 	-Program crashes when no input is entered into the terminal
 	-Program exits when a bad command is entered
+
+~~~~5/16/2022
+
+-Made changes to main()
+
+~~~~5/17/2022
+
+-Fixed a bug where the program would stop unintentionally when the first token of the input
+	command was not 'PLAY' or 'STOP'
+
+-Added void GameManager::ErrorPrint() method to print an error message to the player when
+	they typed a bad command
+
+-Changed name convention and minor implementation of the FindWinner() method
