@@ -174,6 +174,12 @@ void GameManager::FindWinner(Player& Human)
 
 bool GameManager::process(const std::vector<std::string>& ParsedInput)
 {
+	if (ParsedInput.empty())
+	{
+		GameManager::ErrorPrint();
+		return false;
+	}
+	
 	if (ParsedInput[0] == "PLAY" && (ParsedInput[1] == "rock" || ParsedInput[1] == "paper" || ParsedInput[1] == "scissors"))
 	{
 		Player Human;
