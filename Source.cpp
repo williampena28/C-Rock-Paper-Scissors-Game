@@ -4,6 +4,11 @@
 #include <vector>
 #include "Header.h"
 
+void GameManager::ErrorPrint()
+{
+	std::cout << "ERROR:" << "\t BAD COMMAND!!!" << std::endl;
+}
+
 choice ComputerChoice() //Helper function that returns a choice (the computer's choice) to be compared to the player's choice later on
 {
 	choice ComputerChoice;
@@ -42,7 +47,7 @@ void Player::SetChoice(const std::string& PlayerInput)
 	}
 	else if (PlayerInput == "paper")
 	{
-		PlayerChoice = choice::paper; 
+		PlayerChoice = choice::paper;
 	}
 	else if (PlayerInput == "scissors")
 	{
@@ -103,7 +108,7 @@ std::vector<std::string> MyParser::operator() (const std::string& command)
 	return parsed_command;
 }
 
-void GameManager::winner(Player& Human)
+void GameManager::FindWinner(Player& Human)
 {
 	choice Computer = ComputerChoice();
 	choice Player = Human.GetChoice();
@@ -113,17 +118,17 @@ void GameManager::winner(Player& Human)
 	case choice::rock:
 		if (Player == choice::rock) //Draw
 		{
-			std::cout << "You picked: rock" << "\t" << "CPU picked: rock" << std::endl;
+			std::cout << "\nYou picked: rock" << "\t" << "CPU picked: rock" << std::endl;
 			std::cout << "DRAW!" << std::endl;
 		}
 		else if (Player == choice::paper)//Win
 		{
-			std::cout << "You picked: paper" << "\t" << "CPU picked: rock" << std::endl;
+			std::cout << "\nYou picked: paper" << "\t" << "CPU picked: rock" << std::endl;
 			std::cout << "YOU WIN!" << std::endl;
 		}
 		else if (Player == choice::scissors)//Lose
 		{
-			std::cout << "You picked: scissors" << "\t" << "CPU picked: rock" << std::endl;
+			std::cout << "\nYou picked: scissors" << "\t" << "CPU picked: rock" << std::endl;
 			std::cout << "YOU LOSE!" << std::endl;
 		}
 		break;
@@ -131,17 +136,17 @@ void GameManager::winner(Player& Human)
 	case choice::paper:
 		if (Player == choice::rock) //Lose
 		{
-			std::cout << "You picked: rock" << "\t" << "CPU picked: paper" << std::endl;
+			std::cout << "\nYou picked: rock" << "\t" << "CPU picked: paper" << std::endl;
 			std::cout << "YOU LOSE!" << std::endl;
 		}
 		else if (Player == choice::paper)//Draw
 		{
-			std::cout << "You picked: paper" << "\t" << "CPU picked: paper" << std::endl;
+			std::cout << "\nYou picked: paper" << "\t" << "CPU picked: paper" << std::endl;
 			std::cout << "DRAW!" << std::endl;
 		}
 		else if (Player == choice::scissors)//Win
 		{
-			std::cout << "You picked: scissors" << "\t" << "CPU picked: paper" << std::endl;
+			std::cout << "\nYou picked: scissors" << "\t" << "CPU picked: paper" << std::endl;
 			std::cout << "YOU WIN!" << std::endl;
 		}
 		break;
@@ -149,17 +154,17 @@ void GameManager::winner(Player& Human)
 	case choice::scissors:
 		if (Player == choice::rock) //WIN
 		{
-			std::cout << "You picked: rock" << "\t" << "CPU picked: scissors" << std::endl;
+			std::cout << "\nYou picked: rock" << "\t" << "CPU picked: scissors" << std::endl;
 			std::cout << "YOU WIN!" << std::endl;
 		}
 		else if (Player == choice::paper)//LOSE
 		{
-			std::cout << "You picked: paper" << "\t" << "CPU picked: scissors" << std::endl;
+			std::cout << "\nYou picked: paper" << "\t" << "CPU picked: scissors" << std::endl;
 			std::cout << "YOU LOSE!" << std::endl;
 		}
 		else if (Player == choice::scissors)//DRAW
 		{
-			std::cout << "You picked: scissors" << "\t" << "CPU picked: scissors" << std::endl;
+			std::cout << "\nYou picked: scissors" << "\t" << "CPU picked: scissors" << std::endl;
 			std::cout << "DRAW!" << std::endl;
 		}
 		break;
@@ -169,27 +174,27 @@ void GameManager::winner(Player& Human)
 
 bool GameManager::process(const std::vector<std::string>& ParsedInput)
 {
-	if (ParsedInput[0] == "PLAY")
+	if (ParsedInput[0] == "PLAY" && (ParsedInput[1] == "rock" || ParsedInput[1] == "paper" || ParsedInput[1] == "scissors"))
 	{
 		Player Human;
 		Human.SetChoice(ParsedInput[1]);
-		GameManager::winner(Human);
-		std::cout << "Play again?" << std::endl;
+		GameManager::FindWinner(Human);
+		std::cout << "\n" << "Play again?" << std::endl;
 
 		return false;
 	}
-	else if (ParsedInput[0] == "STOP")
+	else if (ParsedInput[0] == "STOP") //terminates the program
 	{
 		return true;
 	}
-	else if (ParsedInput.empty()) // edge case
+	else if (ParsedInput[0] != "STOP" && ParsedInput[0] != "PLAY")
 	{
-		std::cout << "ERROR: NO COMMAND!!!\n";
+		GameManager::ErrorPrint();
 		return false;
 	}
-	else if (ParsedInput.size() > 2)
+	else if (ParsedInput[0] == "PLAY" && (ParsedInput[1] != "rock" || ParsedInput[1] != "paper" || ParsedInput[1] != "scissors"))
 	{
-		std::cout << "ERROR: BAD COMMAND!!!\n";
+		GameManager::ErrorPrint();
 		return false;
 	}
 }
@@ -201,6 +206,10 @@ int main()
 
 	std::string UserInput;
 	bool terminate = false;
+
+	std::cout << "* * * * * * * * * * * * * * * * * * * * * * * * * * * *" << std::endl;
+	std::cout << "*                 ROCK, PAPER, SCISSORS!              *" << std::endl;
+	std::cout << "* * * * * * * * * * * * * * * * * * * * * * * * * * * *" << std::endl;
 
 	while (!terminate)
 	{
