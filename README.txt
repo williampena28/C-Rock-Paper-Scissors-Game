@@ -2,6 +2,8 @@ rps game project
 
 This program was made in Microsoft Visual Studio Community edition 2022
 
+THE .exe TO RUN THIS PROGRAM IS IN The project.rar ZIP FILE
+
 This will run through the terminal and read the inputs from
 the terminal itself. The program will be run on an .exe 
 file and that's howthe game will run. 
