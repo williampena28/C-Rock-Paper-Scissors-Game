@@ -26,6 +26,7 @@ class GameManager
 {
 public:
 	bool process(const std::vector<std::string>& ParsedInput);
-	static void winner(Player& Human);
+	static void FindWinner(Player& Human);
 	bool STOP();
+	static void ErrorPrint();
 };
